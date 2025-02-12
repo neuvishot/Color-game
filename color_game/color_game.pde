@@ -7,6 +7,25 @@ final int starts = 1;
 final int game = 2;
 final int gameover = 3;
 
+// global variables
+int randomWord;
+int randomColor;
+float decide;
+int timer;
+float descent;
+
+// color variables
+color red = #ff0000;
+color green = #00ff00;
+color blue = #0000ff;
+color yellow = #F4FF5A;
+color purple = #D26AFF;
+color pink = #FF86E5;
+
+//array
+String[] words = {"RED", "GREEN", "BLUE", "YELLOW", "PURPLE", "PINK"};
+color[] colors = {red, green, blue, yellow, purple, pink};
+
 void setup() {
   size(600, 600);
   mode = starts;
