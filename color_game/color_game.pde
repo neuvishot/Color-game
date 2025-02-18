@@ -10,9 +10,10 @@ final int gameover = 3;
 // global variables
 int randomWord;
 int randomColor;
-float decide;
+int decide;
 int timer;
 float descent;
+boolean match;
 
 // color variables
 color red = #ff0000;
@@ -30,27 +31,29 @@ void setup() {
   size(600, 600);
   mode = starts;
   textAlign(CENTER, CENTER);
+  descent = -50;
 }
 
-void draw(){
-  println(mouseX, mouseY);
+void draw() {
+  //println(mouseX, mouseY);
+    println(decide, randomWord, randomColor);
   if (mode == starts) {
-   starts(); 
-  } else if (mode == game){
-   game(); 
-  }else if (mode == gameover){
+    starts();
+  } else if (mode == game) {
+    game();
+  } else if (mode == gameover) {
     gameover();
   }
 }
 
-void mousePressed(){
- if (mode == starts){
-   startClicks();
- } else if (mode == game){
-   gameClicks();
- } else if (mode == gameover){
-  gameoverClicks(); 
- }
+void mousePressed() {
+  if (mode == starts) {
+    startClicks();
+  } else if (mode == game) {
+    gameClicks();
+  } else if (mode == gameover) {
+    gameoverClicks();
+  }
 }
 
 void circTact(float x, float y, float w) {

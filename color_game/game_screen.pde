@@ -17,75 +17,71 @@ void game() {
   if (s == 110|| s == 90) {
     r = r *-1;
   }
+
+  if (decide == 0) {
+    match = true;
+  } else if (decide == 1) {
+    match = false;
+  }
   wordColors(300, descent);
-  descent++;
+  descent = descent + 3;
 
   if (descent == 400) {
-    //assigning variables
-    randomWord = (int) random(0, 6);
-    randomColor = (int) random(0, 6);
-    //50-50 deciding thing
-    decide = random(0, 1);
-    descent = 0;
-    //wordColors(300, descent);
-
-    //// losing
-    //mode = gameover;
+    // losing
+    mode = gameover;
   }
 }
 
 void gameClicks() {
-
-  if (decide < .5) {
+  if (match == true) {
     if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       //assigning variables
       randomWord = (int) random(0, 6);
       randomColor = (int) random(0, 6);
       //50-50 deciding thing
-      decide = random(0, 1);
-      descent = 0;
-    } else if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height){
+      decide = (int) random(0, 2);
+      descent = -50;
+    } else if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height) {
       mode = gameover;
     }
   }
-  
-  
-  if (decide > .5) {
+
+  if (match == false) {
     if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height) {
       //assigning variables
       randomWord = (int) random(0, 6);
       randomColor = (int) random(0, 6);
       //50-50 deciding thing
-      decide = random(0, 1);
-      descent = 0;
+      decide = (int) random(0, 2);
+      descent = -50;
     } else if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       mode = gameover;
     }
   }
 }
 
-
-  //  if (mouseX > 0 && mouseX< width && mouseY > 0 && mouseY < width) {
-  //  //assigning variables
-  //  randomWord = (int) random(0, 6);
-  //  randomColor = (int) random(0, 6);
-  //  //50-50 deciding thing
-  //  decide = random(0, 1);
-  //  descent = 0;
+void wordColors(float x, float y) { // words fucntion
+  pushMatrix();
+  translate(x, y);
+  
+  //if (randomWord == randomColor || randomColor == randomWord) {
+  //  match = true;
   //}
-
-
-  void wordColors(float x, float y) { // words fucntion
-    pushMatrix();
-    translate(x, y);
-
-    if (decide < .5) { // basically saying if decide is les that .5 then
-      randomColor = randomWord;// the colors would always match the text
-      fill(colors[randomColor]);
-      text(words[randomWord], 0, 0);
-    } else {
-      fill(colors[randomColor]);
-      text(words[randomWord], 0, 0);
-    }
-    popMatrix();
+  if (match == true) { // basically saying if decide is les that .5 then
+    randomColor = randomWord;// the colors would always match the text
+    fill(colors[randomColor]);
+    text(words[randomWord], 0, 0);
+    //match = true;
   }
+  if (match == false) {
+    fill(colors[randomColor]);
+    if (randomWord == 5) {
+      randomWord = 4;
+    } else if (randomWord == 0){
+     randomWord = -1; 
+    }
+    text(words[randomWord + 1], 0, 0);
+    //match = false;
+  }
+  popMatrix();
+}
