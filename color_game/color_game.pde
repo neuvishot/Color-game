@@ -7,6 +7,14 @@ final int starts = 1;
 final int game = 2;
 final int gameover = 3;
 
+// fonts
+PFont cheese;
+
+// GIF variables
+PImage[] molgif;
+int molFrames;
+int flip;
+
 // global variables
 int randomWord;
 int randomColor;
@@ -32,11 +40,24 @@ void setup() {
   mode = starts;
   textAlign(CENTER, CENTER);
   descent = -50;
+
+  //font
+  cheese = createFont("CheeseOrange-Regular.ttf",1);// the number beside is size
+
+
+  // gif
+  molFrames = 40;
+  molgif = new PImage[molFrames];
+  int frame = 0;
+  while (frame < molFrames) {
+    molgif[frame] = loadImage("frame_"+frame+"_delay-0.07s.gif");
+    frame++;
+  }
 }
 
 void draw() {
-  //println(mouseX, mouseY);
-    println(decide, randomWord, randomColor);
+  println(mouseX, mouseY);
+  //println(decide, randomWord, randomColor);
   if (mode == starts) {
     starts();
   } else if (mode == game) {

@@ -12,6 +12,10 @@ void game() {
   fill(200);
   text("Don't Match", (width/4)*3, 50);
 
+  if (randomWord == randomColor || randomColor == randomWord) {
+    match = true;
+  }
+
   textSize(s);
   s = s + r;
   if (s == 110|| s == 90) {
@@ -33,6 +37,7 @@ void game() {
 }
 
 void gameClicks() {
+
   if (match == true) {
     if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       //assigning variables
@@ -63,10 +68,7 @@ void gameClicks() {
 void wordColors(float x, float y) { // words fucntion
   pushMatrix();
   translate(x, y);
-  
-  //if (randomWord == randomColor || randomColor == randomWord) {
-  //  match = true;
-  //}
+
   if (match == true) { // basically saying if decide is les that .5 then
     randomColor = randomWord;// the colors would always match the text
     fill(colors[randomColor]);
@@ -75,12 +77,7 @@ void wordColors(float x, float y) { // words fucntion
   }
   if (match == false) {
     fill(colors[randomColor]);
-    if (randomWord == 5) {
-      randomWord = 4;
-    } else if (randomWord == 0){
-     randomWord = -1; 
-    }
-    text(words[randomWord + 1], 0, 0);
+    text(words[randomWord], 0, 0);
     //match = false;
   }
   popMatrix();
