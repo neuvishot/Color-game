@@ -1,17 +1,27 @@
 void starts() {
   image(molgif[flip], 0, 0, width, height + 25);
-  flip++;
+  if (frameCount % 2 == 0) flip++;
   if (flip == molFrames) {
     flip = 0;
   }
-  fill(255);
+
+  // text true color
   textFont(cheese);
   textSize(100);
+  fill(255);
   text("True Color", 370, 80);
+
+  // rect
+  strokeWeight(2);
+  tactRect(230, 140, 300, 55);
+  fill(#FCD9F6);
   rect(230, 140, 300, 55, 30);
-  fill(0,0,0);
+
+  // click here text
+  stroke(1);
   textSize(40);
-  text("Click Here!", 380, 165);
+  tactRect(230, 140, 300, 55);
+  text("Click Here!", 380, 163);
 }
 
 void startClicks() {
@@ -23,5 +33,6 @@ void startClicks() {
     //50-50 deciding thing
     decide = (int) random(0, 2);
     descent = -50;
+    score = 0;
   }
 }

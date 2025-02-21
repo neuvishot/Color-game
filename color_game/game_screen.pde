@@ -12,21 +12,24 @@ void game() {
   fill(200);
   text("Don't Match", (width/4)*3, 50);
 
+  // fixing the bug ghhgshfhghgskhg (currently it works) ------------------------
   if (randomWord == randomColor || randomColor == randomWord) {
+    decide = 0;
+  }
+  if (decide == 0) {
     match = true;
+  } else if (decide == 1) {
+    match = false;
   }
 
+  // text enlargement ------------------------------------------
   textSize(s);
   s = s + r;
   if (s == 110|| s == 90) {
     r = r *-1;
   }
 
-  if (decide == 0) {
-    match = true;
-  } else if (decide == 1) {
-    match = false;
-  }
+  // word function and descent----------------------------------
   wordColors(300, descent);
   descent = descent + 3;
 
@@ -37,7 +40,6 @@ void game() {
 }
 
 void gameClicks() {
-
   if (match == true) {
     if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       //assigning variables
@@ -46,6 +48,7 @@ void gameClicks() {
       //50-50 deciding thing
       decide = (int) random(0, 2);
       descent = -50;
+      score++;
     } else if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height) {
       mode = gameover;
     }
@@ -59,6 +62,7 @@ void gameClicks() {
       //50-50 deciding thing
       decide = (int) random(0, 2);
       descent = -50;
+      score++;
     } else if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       mode = gameover;
     }
@@ -69,7 +73,7 @@ void wordColors(float x, float y) { // words fucntion
   pushMatrix();
   translate(x, y);
 
-  if (match == true) { // basically saying if decide is les that .5 then
+  if (match == true) { // basically saying if decide is less than 1 then
     randomColor = randomWord;// the colors would always match the text
     fill(colors[randomColor]);
     text(words[randomWord], 0, 0);

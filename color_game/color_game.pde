@@ -15,13 +15,16 @@ PImage[] molgif;
 int molFrames;
 int flip;
 
-// global variables
+// word deciders
 int randomWord;
 int randomColor;
 int decide;
+
+// gameplay variables
 int timer;
 float descent;
 boolean match;
+int score, highscore;
 
 // color variables
 color red = #ff0000;
@@ -42,8 +45,9 @@ void setup() {
   descent = -50;
 
   //font
-  cheese = createFont("CheeseOrange-Regular.ttf",1);// the number beside is size
-
+  cheese = createFont("CheeseOrange-Regular.ttf", 1);// the number beside is size
+  // gameplay
+  score = highscore = 0;
 
   // gif
   molFrames = 40;
@@ -56,8 +60,8 @@ void setup() {
 }
 
 void draw() {
-  println(mouseX, mouseY);
-  //println(decide, randomWord, randomColor);
+  //println(mouseX, mouseY);
+  println(decide, randomWord, randomColor);
   if (mode == starts) {
     starts();
   } else if (mode == game) {
@@ -74,6 +78,16 @@ void mousePressed() {
     gameClicks();
   } else if (mode == gameover) {
     gameoverClicks();
+  }
+}
+
+void tactRect(float x, float y, float w, float h) {
+  if (mouseX > x && mouseX < x + w && mouseY > y && mouseY <  y + h) {
+    stroke(255);
+    fill(255);
+  } else {
+    stroke (0);
+    fill(0);
   }
 }
 
