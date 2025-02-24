@@ -2,14 +2,14 @@ int s = 100;
 int r = 1;
 
 void game() {
-  background(#8BCEC9);
-  fill(255);
+  background(255);
+  fill(#8BCEC9);
   rect(300, -4, 400, 800);
-  ellipse(300, 600, 1000, 300);
   // text
   textSize(50);
+  fill(#8BCEC9);
   text("Match", width/4, 50);
-  fill(200);
+  fill(255);
   text("Don't Match", (width/4)*3, 50);
 
   // fixing the bug ghhgshfhghgskhg (currently it works) ------------------------
@@ -33,10 +33,16 @@ void game() {
   wordColors(300, descent);
   descent = descent + 3;
 
-  if (descent == 400) {
+  if (descent > 525) {
     // losing
     mode = gameover;
   }
+  fill(#8c89d1);
+  noStroke();
+  ellipse(300, 600, 1000, 300);
+  textSize(50);
+  fill(255);
+  text("Score:"+score, 80, 560);
 }
 
 void gameClicks() {
@@ -72,7 +78,6 @@ void gameClicks() {
 void wordColors(float x, float y) { // words fucntion
   pushMatrix();
   translate(x, y);
-
   if (match == true) { // basically saying if decide is less than 1 then
     randomColor = randomWord;// the colors would always match the text
     fill(colors[randomColor]);

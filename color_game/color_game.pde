@@ -9,11 +9,17 @@ final int gameover = 3;
 
 // fonts
 PFont cheese;
+  int ss = 100;
+  int guh = 1;
 
 // GIF variables
 PImage[] molgif;
 int molFrames;
 int flip;
+
+PImage[] congrats;
+int molcong;
+int conflip;
 
 // word deciders
 int randomWord;
@@ -49,7 +55,7 @@ void setup() {
   // gameplay
   score = highscore = 0;
 
-  // gif
+  // gif car
   molFrames = 40;
   molgif = new PImage[molFrames];
   int frame = 0;
@@ -57,11 +63,20 @@ void setup() {
     molgif[frame] = loadImage("frame_"+frame+"_delay-0.07s.gif");
     frame++;
   }
+
+  // gif congrats
+  molcong = 41;
+  congrats = new PImage[molcong];
+  int rah = 0;
+  while (rah < molcong) {
+    congrats[rah] = loadImage("frame_"+rah+"_delay-0.04s.gif");
+    rah++;
+  }
 }
 
 void draw() {
-  //println(mouseX, mouseY);
-  println(decide, randomWord, randomColor);
+  println(mouseX, mouseY);
+  //println(decide, randomWord, randomColor);
   if (mode == starts) {
     starts();
   } else if (mode == game) {
@@ -94,9 +109,9 @@ void tactRect(float x, float y, float w, float h) {
 void circTact(float x, float y, float w) {
   if (dist(x, y, mouseX, mouseY) < w/2) {
     strokeWeight(2);
-    stroke(#FFFFFF);
+    stroke(#FFE5F7);
+    fill(#FFE5F7);
   } else {
     strokeWeight(2);
-    stroke(#050000);
   }
 }

@@ -6,10 +6,15 @@ void starts() {
   }
 
   // text true color
+  stroke(0);
   textFont(cheese);
-  textSize(100);
+  ss = ss + guh;
+  if (ss == 110 || ss == 90){
+   guh = guh * -1; 
+  }
+   textSize(ss);
   fill(255);
-  text("True Color", 370, 80);
+  text("True Color", 370, 70);
 
   // rect
   strokeWeight(2);
