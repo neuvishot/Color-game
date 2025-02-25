@@ -1,5 +1,15 @@
 // color game
 // feb 11 2025
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+// audio
+Minim minimmol;
+AudioPlayer music, success, fail, ingame;
 
 //framework variables
 int mode;
@@ -9,8 +19,8 @@ final int gameover = 3;
 
 // fonts
 PFont cheese;
-  int ss = 100;
-  int guh = 1;
+int ss = 100;
+int guh = 1;
 
 // GIF variables
 PImage[] molgif;
@@ -46,10 +56,17 @@ color[] colors = {red, green, blue, yellow, purple, pink};
 
 void setup() {
   size(600, 600);
-  mode = starts;
+  mode = gameover;
   textAlign(CENTER, CENTER);
   descent = -50;
-
+  
+  // audio 
+  minimmol = new Minim(this);
+  music = minimmol.loadFile("MUSIC.mp3");
+  ingame = minimmol.loadFile("gameMusic.mp3");
+  success = minimmol.loadFile("SUCCESS.wav");
+  fail = minimmol.loadFile("FAILURE.wav");
+  
   //font
   cheese = createFont("CheeseOrange-Regular.ttf", 1);// the number beside is size
   // gameplay

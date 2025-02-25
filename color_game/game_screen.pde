@@ -2,6 +2,7 @@ int s = 100;
 int r = 1;
 
 void game() {
+  ingame.play();
   background(255);
   fill(#8BCEC9);
   rect(300, -4, 400, 800);
@@ -36,6 +37,7 @@ void game() {
   if (descent > 525) {
     // losing
     mode = gameover;
+    fail.rewind();
   }
   fill(#8c89d1);
   noStroke();
@@ -49,19 +51,23 @@ void gameClicks() {
   if (match == true) {
     if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       //assigning variables
+      success.play();
       randomWord = (int) random(0, 6);
       randomColor = (int) random(0, 6);
       //50-50 deciding thing
       decide = (int) random(0, 2);
       descent = -50;
       score++;
+      success.rewind();
     } else if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height) {
       mode = gameover;
+      fail.rewind();
     }
   }
 
   if (match == false) {
     if (mouseX > width/2 && mouseX< width && mouseY > 0 && mouseY < height) {
+      success.play();
       //assigning variables
       randomWord = (int) random(0, 6);
       randomColor = (int) random(0, 6);
@@ -69,8 +75,10 @@ void gameClicks() {
       decide = (int) random(0, 2);
       descent = -50;
       score++;
+      success.rewind();
     } else if (mouseX > 0 && mouseX< width/2 && mouseY > 0 && mouseY <height) {
       mode = gameover;
+      fail.rewind();
     }
   }
 }

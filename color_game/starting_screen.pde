@@ -1,4 +1,8 @@
 void starts() {
+  fail.pause();
+  music.play();
+
+
   image(molgif[flip], 0, 0, width, height + 25);
   if (frameCount % 2 == 0) flip++;
   if (flip == molFrames) {
@@ -39,5 +43,8 @@ void startClicks() {
     decide = (int) random(0, 2);
     descent = -50;
     score = 0;
+    
+    ingame.rewind();
+    music.pause();
   }
 }
